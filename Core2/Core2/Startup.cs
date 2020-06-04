@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Core2.Model;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
@@ -20,7 +21,7 @@ namespace Core2
             // this will internally calls MVCCore -- AddMvccore() method 
             // so instead of writing services.AddMvcCore();  we can write above code
 
-
+            services.AddSingleton<IEmployeeRepository, MockEmployee>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -42,10 +43,10 @@ namespace Core2
                        name: "default",
                        pattern: "{controller=Home}/{action=Index}/{id?}");
 
-                endpoints.MapGet("/", async context =>
-                {
-                    await context.Response.WriteAsync("Hello World!");
-                });
+                //endpoints.MapGet("/", async context =>
+                //{
+                //    await context.Response.WriteAsync("Hello World!");
+                //});
             });
         }
     }
