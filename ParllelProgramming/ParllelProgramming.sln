@@ -9,6 +9,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TasksAsync", "TasksAsync\Ta
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SchedulingTasks", "SchedulingTasks\SchedulingTasks.csproj", "{7CBB1B89-EBC0-4AF8-99D4-06077FE4018F}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CallBackFunctions", "CallBackFunctions\CallBackFunctions.csproj", "{51496FC3-5207-4D71-95CD-86104C0E5B96}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,6 +29,10 @@ Global
 		{7CBB1B89-EBC0-4AF8-99D4-06077FE4018F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7CBB1B89-EBC0-4AF8-99D4-06077FE4018F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7CBB1B89-EBC0-4AF8-99D4-06077FE4018F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{51496FC3-5207-4D71-95CD-86104C0E5B96}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{51496FC3-5207-4D71-95CD-86104C0E5B96}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{51496FC3-5207-4D71-95CD-86104C0E5B96}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{51496FC3-5207-4D71-95CD-86104C0E5B96}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
