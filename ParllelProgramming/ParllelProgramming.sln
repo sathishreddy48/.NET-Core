@@ -11,6 +11,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SchedulingTasks", "Scheduli
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CallBackFunctions", "CallBackFunctions\CallBackFunctions.csproj", "{51496FC3-5207-4D71-95CD-86104C0E5B96}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ThreadSafe", "ThreadSafe\ThreadSafe.csproj", "{3CB5AD1C-A9A6-4CD0-92E8-7FE1149A93EB}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -33,6 +35,10 @@ Global
 		{51496FC3-5207-4D71-95CD-86104C0E5B96}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{51496FC3-5207-4D71-95CD-86104C0E5B96}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{51496FC3-5207-4D71-95CD-86104C0E5B96}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3CB5AD1C-A9A6-4CD0-92E8-7FE1149A93EB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3CB5AD1C-A9A6-4CD0-92E8-7FE1149A93EB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3CB5AD1C-A9A6-4CD0-92E8-7FE1149A93EB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3CB5AD1C-A9A6-4CD0-92E8-7FE1149A93EB}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
