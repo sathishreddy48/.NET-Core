@@ -5,6 +5,10 @@ VisualStudioVersion = 16.0.30128.74
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ParllelProgramming", "ParllelProgramming\ParllelProgramming.csproj", "{2D8B089A-4A99-45F0-913C-C447818FE47C}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TasksAsync", "TasksAsync\TasksAsync.csproj", "{D4F82337-B129-42CB-A34C-EA53162A06EA}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SchedulingTasks", "SchedulingTasks\SchedulingTasks.csproj", "{7CBB1B89-EBC0-4AF8-99D4-06077FE4018F}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +19,14 @@ Global
 		{2D8B089A-4A99-45F0-913C-C447818FE47C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2D8B089A-4A99-45F0-913C-C447818FE47C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{2D8B089A-4A99-45F0-913C-C447818FE47C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D4F82337-B129-42CB-A34C-EA53162A06EA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D4F82337-B129-42CB-A34C-EA53162A06EA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D4F82337-B129-42CB-A34C-EA53162A06EA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D4F82337-B129-42CB-A34C-EA53162A06EA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7CBB1B89-EBC0-4AF8-99D4-06077FE4018F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7CBB1B89-EBC0-4AF8-99D4-06077FE4018F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7CBB1B89-EBC0-4AF8-99D4-06077FE4018F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7CBB1B89-EBC0-4AF8-99D4-06077FE4018F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

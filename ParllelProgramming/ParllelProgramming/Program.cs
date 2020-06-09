@@ -20,6 +20,8 @@ namespace ParllelProgramming
             }
             Console.WriteLine();
             Console.WriteLine("Parallel For Loop");
+
+           // Parallel.For(0, 100, output => { Console.WriteLine($""); });
             Parallel.For(0, number, count =>
             {
                 Console.WriteLine($"value of count = {count}, thread = {Thread.CurrentThread.ManagedThreadId}");
