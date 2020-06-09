@@ -13,6 +13,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CallBackFunctions", "CallBa
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ThreadSafe", "ThreadSafe\ThreadSafe.csproj", "{3CB5AD1C-A9A6-4CD0-92E8-7FE1149A93EB}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MutexSample", "MutexSample\MutexSample.csproj", "{8299846A-ACE6-4AD4-8FF6-C77CB204822B}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -39,6 +41,10 @@ Global
 		{3CB5AD1C-A9A6-4CD0-92E8-7FE1149A93EB}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3CB5AD1C-A9A6-4CD0-92E8-7FE1149A93EB}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{3CB5AD1C-A9A6-4CD0-92E8-7FE1149A93EB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8299846A-ACE6-4AD4-8FF6-C77CB204822B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8299846A-ACE6-4AD4-8FF6-C77CB204822B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8299846A-ACE6-4AD4-8FF6-C77CB204822B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8299846A-ACE6-4AD4-8FF6-C77CB204822B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
