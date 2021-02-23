@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using WebApiTask.Repository.IRepository;
+using WebApiTask.Models;
 
 namespace WebApiTask.Controllers
 {
@@ -23,8 +24,15 @@ namespace WebApiTask.Controllers
         [HttpGet]
         public async Task<IActionResult> GetAllAsync()
         {
-              var result=  unitOfWork.Tags.GetAll();
+            var result= await unitOfWork.Tags.GetAllAsync();
             return Ok(result);
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> AddTagsAsync([FromBody] Tags tags)
+        {
+           await unitOfWork.Tags.AddAsync(tags);
+            return Ok();
         }
     }
 }

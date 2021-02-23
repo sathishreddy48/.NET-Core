@@ -22,17 +22,17 @@ namespace WebApiTask.Repository
             this.dbSet = dbContext.Set<T>();
             
         }
-        public void Add(T entity)
+        public async Task AddAsync(T entity)
         {
-            dbSet.Add(entity);
+             await dbSet.AddAsync(entity);
         }
 
-        public T Get(int id)
+        public async Task<T> GetAsync(int id)
         {
-            return dbSet.Find(id);
+             return await dbSet.FindAsync(id);
         }
 
-        public IEnumerable<T> GetAll(Expression<Func<T, bool>> filter = null, Func<IQueryable<T>, IOrderedQueryable<T>> orderBy = null, string includeProperties = null)
+        public async Task<IEnumerable<T>> GetAllAsync(Expression<Func<T, bool>> filter = null, Func<IQueryable<T>, IOrderedQueryable<T>> orderBy = null, string includeProperties = null)
         {
             IQueryable<T> query = dbSet;
 
@@ -53,10 +53,10 @@ namespace WebApiTask.Repository
             {
                 return orderBy(query).ToList();
             }
-            return query.ToList();
+            return  query.ToList();
         }
 
-        public T GetFirstOrDefault(Expression<Func<T, bool>> filter = null, string includeProperties = null)
+        public async Task<T> GetFirstOrDefaultAsync(Expression<Func<T, bool>> filter = null, string includeProperties = null)
         {
             IQueryable<T> query = dbSet;
 
@@ -76,20 +76,22 @@ namespace WebApiTask.Repository
 
             return query.FirstOrDefault();
         }
-        public void Remove(int id)
+        public async Task RemoveAsync(int id)
         {
-            T entity = dbSet.Find(id);
-            Remove(entity);
+            T entity = await dbSet.FindAsync(id);
+             await RemoveAsync(entity);
         }
 
-        public void Remove(T entity)
+        public async Task RemoveAsync(T entity)
         {
-            dbSet.Remove(entity);
+             dbSet.Remove(entity);
         }
 
-        public void RemoveRange(IEnumerable<T> entity)
+        public async Task RemoveRangeAsync(IEnumerable<T> entity)
         {
-            dbSet.RemoveRange(entity);
+             dbSet.RemoveRange(entity);
         }
+
+
     }
 }
