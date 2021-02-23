@@ -1,8 +1,9 @@
 ﻿namespace WebApiTask
 {
+    using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
     using Microsoft.EntityFrameworkCore;
     using WebApiTask.Models;
-    public class ApplicationDbContext : DbContext
+    public class ApplicationDbContext : IdentityDbContext
     {
         /// <summary>
         /// initializes new context of the <see cref="ApplicationDbContext"/>
@@ -16,16 +17,16 @@
         /// <summary>
         /// Get or sets tagsDBEntity
         /// </summary>
-        public DbSet<Tags> TagsDBEntity { get; set; }
+        public DbSet<Tags> Tags { get; set; }
 
         /// <summary>
         /// Get or Sets QuestionsDBEntity
         /// </summary>
-        public DbSet<Questions> QuestionsDBEntity { get; set; }
+        public DbSet<Questions> Questions { get; set; }
 
         /// <summary>
         /// Get or Sets AnswersDBEntity
         /// </summary>
-        public DbSet<Answers> AnswersDBEntity { get; set; }
+        public DbSet<Answers> Answers { get; set; }
     }
 }

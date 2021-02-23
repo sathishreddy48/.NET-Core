@@ -1,5 +1,6 @@
 ﻿using WebApiTask.Models;
 using WebApiTask.Repository.IRepository;
+using System.Linq;
 
 namespace WebApiTask.Repository
 {
@@ -9,6 +10,18 @@ namespace WebApiTask.Repository
         public QuestionsRepository(ApplicationDbContext dbContext) : base(dbContext)
         {
             applicationDbContext = dbContext;
+        }
+
+        public void UpdateQuestionsAsync(Questions question)
+        {
+            var questionsEntity = applicationDbContext.Questions.FirstOrDefault(t => t.Id == question.Id);
+
+            if (questionsEntity != null)
+            {
+                questionsEntity.Tags = question.Tags;
+                questionsEntity.Question = question.Question;
+                applicationDbContext.SaveChanges();
+            }
         }
     }
 }

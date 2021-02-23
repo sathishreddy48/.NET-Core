@@ -1,49 +1,48 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using WebApiTask.Repository.IRepository;
 using WebApiTask.Models;
-using System.Net;
+using WebApiTask.Repository.IRepository;
 
 namespace WebApiTask.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class TagsController : ControllerBase
+    public class QuestionsController : ControllerBase
     {
-
         private IUnitOfWork unitOfWork;
 
-        public TagsController(IUnitOfWork unit)
+        public QuestionsController(IUnitOfWork unit)
         {
             unitOfWork = unit;
         }
 
         [HttpGet]
-        [Route("GetTags")]
-        public async Task<IEnumerable<Tags>> GetAllAsync()
+        [Route("GetQuestions")]
+        public async Task<IEnumerable<Questions>> GetAllAsync()
         {
-            var result= await unitOfWork.Tags.GetAllAsync();
+            var result = await unitOfWork.Questions.GetAllAsync();
             return result;
         }
 
         [HttpPost]
-        [Route("AddTags")]
-        public async Task AddTagsAsync([FromBody] Tags tags)
+        [Route("AddQuestions")]
+        public async Task AddQuestionsAsync([FromBody] Questions question)
         {
             try
             {
-                await unitOfWork.Tags.AddAsync(tags);
+                await unitOfWork.Questions.AddAsync(question);
                 unitOfWork.Save();
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 this.HttpContext.Response.ContentType = "text/plain";
                 this.HttpContext.Response.StatusCode = (int)HttpStatusCode.InternalServerError;
-                await this.HttpContext.Response.WriteAsync("An error occurred while creating Tags API\n" + ex.Message);
+                await this.HttpContext.Response.WriteAsync("An error occurred while creating questions AddQuestionsAsync API\n" + ex.Message);
             }
         }
     }
