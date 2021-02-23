@@ -8,8 +8,8 @@ namespace WebApiTask.Models
     using System.ComponentModel.DataAnnotations;
     using System.ComponentModel.DataAnnotations.Schema;
 
-    //[Table("Tags")]
-    public class TagsDBEntity
+    [Table("Tags")]
+    public class Tags
     {
         /// <summary>
         /// Gets or sets a ID of the Tags entity
@@ -20,7 +20,8 @@ namespace WebApiTask.Models
         /// <summary>
         /// Gets or sets Tags of TagsDB Entity
         /// </summary>
-        public string Tags { get; set; }
+        [Column("Tag")]
+        public string Tag { get; set; }
 
     }
 }

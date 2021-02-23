@@ -8,7 +8,7 @@ namespace WebApiTask.Repository.IRepository
     using WebApiTask.Models;
     using WebApiTask.Repository.IRepository;
 
-    public interface IAnswers : IRepository<AnswersDBEntity>
+    public interface IAnswers : IRepository<Answers>
     {
     }
 }

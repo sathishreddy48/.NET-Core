@@ -7,7 +7,7 @@ using WebApiTask.Repository.IRepository;
 
 namespace WebApiTask.Repository.IRepository
 {
-    public interface IQuestions : IRepository<QuestionsDBEntity>
+    public interface IQuestions : IRepository<Questions>
     {
     }
 }

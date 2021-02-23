@@ -8,7 +8,7 @@ namespace WebApiTask.Repository.IRepository
     using WebApiTask.Models;
     using WebApiTask.Repository.IRepository;
 
-    public interface ITags : IRepository<TagsDBEntity>
+    public interface ITags : IRepository<Tags>
     {
 
       

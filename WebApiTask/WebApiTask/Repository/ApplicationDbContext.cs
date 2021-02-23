@@ -16,16 +16,16 @@
         /// <summary>
         /// Get or sets tagsDBEntity
         /// </summary>
-        public DbSet<TagsDBEntity> TagsDBEntity { get; set; }
+        public DbSet<Tags> TagsDBEntity { get; set; }
 
         /// <summary>
         /// Get or Sets QuestionsDBEntity
         /// </summary>
-        public DbSet<QuestionsDBEntity> QuestionsDBEntity { get; set; }
+        public DbSet<Questions> QuestionsDBEntity { get; set; }
 
         /// <summary>
         /// Get or Sets AnswersDBEntity
         /// </summary>
-        public DbSet<AnswersDBEntity> AnswersDBEntity { get; set; }
+        public DbSet<Answers> AnswersDBEntity { get; set; }
     }
 }

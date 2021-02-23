@@ -7,8 +7,8 @@ using System.Threading.Tasks;
 
 namespace WebApiTask.Models
 {
-    //[Table("Answers")]
-    public class AnswersDBEntity
+    [Table("Answers")]
+    public class Answers
     {
         /// <summary>
         /// Gets or sets a ID of Answers entity
@@ -19,11 +19,13 @@ namespace WebApiTask.Models
         /// <summary>
         /// Gets or sets Answer of Answers Entity
         /// </summary>
+        [Column("Answer")]
         public string Answer { get; set; }
 
         /// <summary>
         /// Gets or sets QuestionID of Answers Entity
         /// </summary>
+        [Column("QuestionID")]
         public Guid QuestionID { get; set; }
     }
 }
