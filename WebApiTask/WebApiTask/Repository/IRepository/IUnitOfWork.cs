@@ -11,5 +11,7 @@ namespace WebApiTask.Repository.IRepository
         IQuestions Questions { get; }
         IAnswers Answers { get; }
         IStoredProcedure StoredProcedure { get; }
+
+        void Save();
     }
 }

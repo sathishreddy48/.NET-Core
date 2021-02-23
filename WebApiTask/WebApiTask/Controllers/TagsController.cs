@@ -22,6 +22,7 @@ namespace WebApiTask.Controllers
         }
 
         [HttpGet]
+        [Route("GetTags")]
         public async Task<IActionResult> GetAllAsync()
         {
             var result= await unitOfWork.Tags.GetAllAsync();
@@ -29,9 +30,11 @@ namespace WebApiTask.Controllers
         }
 
         [HttpPost]
+        [Route("AddTags")]
         public async Task<IActionResult> AddTagsAsync([FromBody] Tags tags)
         {
            await unitOfWork.Tags.AddAsync(tags);
+           unitOfWork.Save();
             return Ok();
         }
     }
