@@ -26,14 +26,30 @@ namespace WebApiTask.Controllers
         [Route("GetQuestions")]
         public async Task<IActionResult> GetAllAsync()
         {
-            var result = await unitOfWork.Questions.GetAllAsync();
-            return Ok(result);
+            try
+            {
+                var result = await unitOfWork.Questions.GetAllAsync();
+                return Ok(result);
+            }
+            catch (Exception ex)
+            {
+                this.HttpContext.Response.ContentType = "text/plain";
+                this.HttpContext.Response.StatusCode = (int)HttpStatusCode.InternalServerError;
+                await this.HttpContext.Response.WriteAsync("An error occurred while fetching questions GetAllAsync API\n" + ex.Message);
+                return NoContent();
+            }
         }
 
         [HttpPost]
         [Route("AddQuestions")]
         public async Task AddQuestionsAsync([FromBody] Questions question)
         {
+            if (question == null)
+            {
+                this.HttpContext.Response.ContentType = "text/plain";
+                this.HttpContext.Response.StatusCode = (int)HttpStatusCode.BadRequest;
+                await this.HttpContext.Response.WriteAsync($"Parameter {nameof(question)} cannot be null or empty.");
+            }
             try
             {
                 if (question.Id == Guid.Empty)
@@ -60,12 +76,23 @@ namespace WebApiTask.Controllers
         [Route("GetQuestionsByTags/{tags}")]
         public async Task<IActionResult> GetQuestionsByTags(string tags)
         {
+            if (string.IsNullOrEmpty(tags))
+            {
+                this.HttpContext.Response.ContentType = "text/plain";
+                this.HttpContext.Response.StatusCode = (int)HttpStatusCode.BadRequest;
+                await this.HttpContext.Response.WriteAsync($"Parameter {nameof(tags)} cannot be null or empty.");
+            }
             IEnumerable<Questions> questions = null;
             try
             {
                var que = await unitOfWork.Questions.GetAllAsync();
                questions =que.Where(x => x.Tags.Contains(tags)).ToList();
-
+                if (questions==null)
+                {
+                    this.HttpContext.Response.ContentType = "text/plain";
+                    this.HttpContext.Response.StatusCode = (int)HttpStatusCode.NoContent;
+                    await this.HttpContext.Response.WriteAsync($"No questions found for given tags {tags}");
+                }
             }
             catch (Exception ex)
             {

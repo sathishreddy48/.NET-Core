@@ -25,8 +25,18 @@ namespace WebApiTask.Controllers
         [Route("GetAnswers")]
         public async Task<IActionResult> GetAllAsync()
         {
-            var result = await unitOfWork.Answers.GetAllAsync();
-            return Ok(result);
+            try
+            {
+                var result = await unitOfWork.Answers.GetAllAsync();
+                return Ok(result);
+            }
+            catch (Exception ex)
+            {
+                this.HttpContext.Response.ContentType = "text/plain";
+                this.HttpContext.Response.StatusCode = (int)HttpStatusCode.InternalServerError;
+                await this.HttpContext.Response.WriteAsync("An error occurred while fetching questions GetAllAsync API\n" + ex.Message);
+                return NoContent();
+            }
         }
 
         [HttpPost]
@@ -60,14 +70,23 @@ namespace WebApiTask.Controllers
         public async Task<IActionResult> GetAnswersByquestionAsync(string question)
         {
             IEnumerable<Answers> answers = null;
+            if (string.IsNullOrEmpty(question))
+            {
+                this.HttpContext.Response.ContentType = "text/plain";
+                this.HttpContext.Response.StatusCode = (int)HttpStatusCode.BadRequest;
+                await this.HttpContext.Response.WriteAsync($"Parameter {nameof(question)} cannot be null or empty.");
+            }
             try
             {
-               var qobj = unitOfWork.Questions.GetAllAsync().GetAwaiter().GetResult()?.Where(q => q.Question.Equals(question)).FirstOrDefault();
-                if (qobj == null)
+                var qobjs = await unitOfWork.Questions.GetAllAsync();
+                var q= qobjs.Where(q => q.Question.Equals(question)).FirstOrDefault();
+                if (q == null)
                 {
-                    return null;
+                    this.HttpContext.Response.ContentType = "text/plain";
+                    this.HttpContext.Response.StatusCode = (int)HttpStatusCode.NoContent;
+                    await this.HttpContext.Response.WriteAsync($"question {question} not found ");
                 }
-                answers= unitOfWork.Answers.GetAllAsync().GetAwaiter().GetResult()?.Where(x => x.QuestionID == qobj.Id).ToList();
+                answers= unitOfWork.Answers.GetAllAsync().GetAwaiter().GetResult()?.Where(x => x.QuestionID == q.Id).ToList();
 
             }
             catch (Exception ex)
