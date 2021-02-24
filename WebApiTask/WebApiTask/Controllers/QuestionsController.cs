@@ -63,8 +63,9 @@ namespace WebApiTask.Controllers
             IEnumerable<Questions> questions = null;
             try
             {
-                questions = unitOfWork.Questions.GetAllAsync().GetAwaiter().GetResult()?.Where(x => x.Tags.Contains(tags)).ToList();
-             
+               var que = await unitOfWork.Questions.GetAllAsync();
+               questions =que.Where(x => x.Tags.Contains(tags)).ToList();
+
             }
             catch (Exception ex)
             {
