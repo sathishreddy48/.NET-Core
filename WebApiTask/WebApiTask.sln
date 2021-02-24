@@ -3,13 +3,15 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.30128.74
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebApiTask", "WebApiTask\WebApiTask.csproj", "{D9591D28-4A17-4ADC-B61A-D8873F6CCF21}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WebApiTask", "WebApiTask\WebApiTask.csproj", "{D9591D28-4A17-4ADC-B61A-D8873F6CCF21}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebApiTask.DataAccess", "WebApiTask.DataAccess\WebApiTask.DataAccess.csproj", "{EF2A078C-D4E5-449F-A371-296A7E1C22A4}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WebApiTask.DataAccess", "WebApiTask.DataAccess\WebApiTask.DataAccess.csproj", "{EF2A078C-D4E5-449F-A371-296A7E1C22A4}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebApiTask.Models", "WebApiTask.Models\WebApiTask.Models.csproj", "{85E2F992-5C11-4464-9FCA-9CE9C172B08F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WebApiTask.Models", "WebApiTask.Models\WebApiTask.Models.csproj", "{85E2F992-5C11-4464-9FCA-9CE9C172B08F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebApiTask.Utils", "WebApiTask.Utils\WebApiTask.Utils.csproj", "{16E08C52-BDB3-44E8-8099-22F2787836EA}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WebApiTask.Utils", "WebApiTask.Utils\WebApiTask.Utils.csproj", "{16E08C52-BDB3-44E8-8099-22F2787836EA}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebApiTask.Test", "WebApiTask.Test\WebApiTask.Test.csproj", "{40FB8C32-E916-4973-92D7-D4E2148C792D}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -33,6 +35,10 @@ Global
 		{16E08C52-BDB3-44E8-8099-22F2787836EA}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{16E08C52-BDB3-44E8-8099-22F2787836EA}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{16E08C52-BDB3-44E8-8099-22F2787836EA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{40FB8C32-E916-4973-92D7-D4E2148C792D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{40FB8C32-E916-4973-92D7-D4E2148C792D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{40FB8C32-E916-4973-92D7-D4E2148C792D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{40FB8C32-E916-4973-92D7-D4E2148C792D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
