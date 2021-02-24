@@ -1,11 +1,18 @@
-﻿using Microsoft.AspNetCore.Mvc;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.Text;
+﻿// <copyright file="PagingOption.cs" company="PlaceholderCompany">
+// Copyright (c) PlaceholderCompany. All rights reserved.
+// </copyright>
 
 namespace WebApiTask.Utils
 {
+    using System;
+    using System.Collections.Generic;
+    using System.ComponentModel.DataAnnotations;
+    using System.Text;
+    using Microsoft.AspNetCore.Mvc;
+
+    /// <summary>
+    /// PagingOptions.
+    /// </summary>
     public sealed class PagingOptions
     {
         public const int MaxPageSize = 100;
