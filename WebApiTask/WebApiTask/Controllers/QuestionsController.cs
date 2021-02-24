@@ -54,5 +54,14 @@ namespace WebApiTask.Controllers
                 await this.HttpContext.Response.WriteAsync("An error occurred while creating questions AddQuestionsAsync API\n" + ex.Message);
             }
         }
+
+
+        [HttpGet]
+        [Route("GetQuestionsByTags")]
+        public async Task<IEnumerable<Questions>> GetQuestionsByTags([FromBody]string tags)
+        {
+            var result = await unitOfWork.Questions.GetAllAsync();
+            return result;
+        }
     }
 }
