@@ -10,5 +10,6 @@ namespace WebApiTask.Repository.IRepository
 
     public interface IAnswers : IRepository<Answers>
     {
+        public Task UpdateAnswersAsync(Answers answers);
     }
 }

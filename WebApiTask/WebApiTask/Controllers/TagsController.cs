@@ -36,14 +36,22 @@ namespace WebApiTask.Controllers
         {
             try
             {
-                await unitOfWork.Tags.AddAsync(tags);
+                if (tags.Id == null)
+                {
+                    await unitOfWork.Tags.AddAsync(tags);
+                }
+                else
+                {
+                    await unitOfWork.Tags.UpdateTagAsync(tags);
+                }
+
                 unitOfWork.Save();
             }
             catch(Exception ex)
             {
                 this.HttpContext.Response.ContentType = "text/plain";
                 this.HttpContext.Response.StatusCode = (int)HttpStatusCode.InternalServerError;
-                await this.HttpContext.Response.WriteAsync("An error occurred while creating Tags API\n" + ex.Message);
+                await this.HttpContext.Response.WriteAsync("An error occurred while creating Tags AddTagsAsync API\n" + ex.Message);
             }
         }
     }

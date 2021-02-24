@@ -35,7 +35,16 @@ namespace WebApiTask.Controllers
         {
             try
             {
-                await unitOfWork.Questions.AddAsync(question);
+
+                if (question.Id == null)
+                {
+                    await unitOfWork.Questions.AddAsync(question);
+                }
+                else
+                {
+                    await unitOfWork.Questions.UpdateQuestionsAsync(question);
+                }
+
                 unitOfWork.Save();
             }
             catch (Exception ex)

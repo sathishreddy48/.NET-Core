@@ -10,7 +10,6 @@ namespace WebApiTask.Repository.IRepository
 
     public interface ITags : IRepository<Tags>
     {
-
-      
+        Task UpdateTagAsync(Tags tags);
     }
 }

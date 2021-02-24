@@ -35,14 +35,22 @@ namespace WebApiTask.Controllers
         {
             try
             {
-                await unitOfWork.Answers.AddAsync(answer);
+                if (answer.Id == null)
+                {
+                    await unitOfWork.Answers.AddAsync(answer);
+                }
+                else
+                {
+                    await unitOfWork.Answers.UpdateAnswersAsync(answer);
+                }
+
                 unitOfWork.Save();
             }
             catch (Exception ex)
             {
                 this.HttpContext.Response.ContentType = "text/plain";
                 this.HttpContext.Response.StatusCode = (int)HttpStatusCode.InternalServerError;
-                await this.HttpContext.Response.WriteAsync("An error occurred while creating questions AddQuestionsAsync API\n" + ex.Message);
+                await this.HttpContext.Response.WriteAsync("An error occurred while creating answer AddAnswersAsync API\n" + ex.Message);
             }
         }
 

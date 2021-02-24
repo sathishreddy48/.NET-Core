@@ -1,6 +1,7 @@
 ﻿using WebApiTask.Models;
 using WebApiTask.Repository.IRepository;
 using System.Linq;
+using System.Threading.Tasks;
 
 namespace WebApiTask.Repository
 {
@@ -12,14 +13,14 @@ namespace WebApiTask.Repository
             applicationDbContext = dbContext;
         }
 
-        public void UpdateAnswerAsync(Answers answer)
+        public async Task UpdateAnswersAsync(Answers answer)
         {
             var answerEntity = applicationDbContext.Answers.FirstOrDefault(t => t.Id == answer.Id);
 
             if (answerEntity != null)
             {
                 answerEntity.Answer = answer.Answer;
-                applicationDbContext.SaveChanges();
+                await applicationDbContext.SaveChangesAsync();
             }
         }
     }

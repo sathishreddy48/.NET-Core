@@ -9,5 +9,6 @@ namespace WebApiTask.Repository.IRepository
 {
     public interface IQuestions : IRepository<Questions>
     {
+       public Task UpdateQuestionsAsync(Questions question);
     }
 }

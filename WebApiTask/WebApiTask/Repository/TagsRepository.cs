@@ -1,6 +1,7 @@
 ﻿using WebApiTask.Models;
 using WebApiTask.Repository.IRepository;
 using System.Linq;
+using System.Threading.Tasks;
 
 namespace WebApiTask.Repository
 {
@@ -12,14 +13,14 @@ namespace WebApiTask.Repository
             applicationDbContext = dbContext;
         }
 
-        public void UpdateTagAsync(Tags tags)
+        public async Task UpdateTagAsync(Tags tags)
         {
             var tagsEntity = applicationDbContext.Tags.FirstOrDefault(t => t.Id == tags.Id);
 
             if (tagsEntity != null)
             {
                 tagsEntity.Tag = tags.Tag;
-                applicationDbContext.SaveChanges();
+                await applicationDbContext.SaveChangesAsync();
             }
         }
     }
