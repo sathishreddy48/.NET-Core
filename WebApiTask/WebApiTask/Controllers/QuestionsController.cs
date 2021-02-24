@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using WebApiTask.Models;
 using WebApiTask.Repository.IRepository;
+using WebApiTask.Utils;
 
 namespace WebApiTask.Controllers
 {
@@ -35,9 +36,9 @@ namespace WebApiTask.Controllers
         {
             try
             {
-
-                if (question.Id == null)
+                if (question.Id == Guid.Empty)
                 {
+                    question.Id = Guid.NewGuid();
                     await unitOfWork.Questions.AddAsync(question);
                 }
                 else
@@ -60,8 +61,19 @@ namespace WebApiTask.Controllers
         [Route("GetQuestionsByTags")]
         public async Task<IEnumerable<Questions>> GetQuestionsByTags([FromBody]string tags)
         {
-            var result = await unitOfWork.Questions.GetAllAsync();
-            return result;
+            IEnumerable<Questions> questions = null;
+            try
+            {
+                questions = unitOfWork.Questions.GetAllAsync().GetAwaiter().GetResult()?.Where(x => x.Tags.Contains(tags)).ToList();
+             
+            }
+            catch (Exception ex)
+            {
+                this.HttpContext.Response.ContentType = "text/plain";
+                this.HttpContext.Response.StatusCode = (int)HttpStatusCode.InternalServerError;
+                await this.HttpContext.Response.WriteAsync("An error occurred while fetch questions GetQuestionsByTags API\n" + ex.Message);
+            }
+            return questions;
         }
     }
 }

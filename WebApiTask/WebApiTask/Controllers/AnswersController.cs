@@ -37,6 +37,7 @@ namespace WebApiTask.Controllers
             {
                 if (answer.Id == null)
                 {
+                    answer.Id = Guid.NewGuid();
                     await unitOfWork.Answers.AddAsync(answer);
                 }
                 else
@@ -52,6 +53,30 @@ namespace WebApiTask.Controllers
                 this.HttpContext.Response.StatusCode = (int)HttpStatusCode.InternalServerError;
                 await this.HttpContext.Response.WriteAsync("An error occurred while creating answer AddAnswersAsync API\n" + ex.Message);
             }
+        }
+
+        [HttpGet]
+        [Route("GetAnswersByQuestion")]
+        public async Task<IEnumerable<Answers>> GetAnswersByquestionAsync([FromBody] string question)
+        {
+            IEnumerable<Answers> answers = null;
+            try
+            {
+               var qobj = unitOfWork.Questions.GetAllAsync().GetAwaiter().GetResult()?.Where(q => q.Question.Equals(question)).FirstOrDefault();
+                if (qobj == null)
+                {
+                    return null;
+                }
+                answers= unitOfWork.Answers.GetAllAsync().GetAwaiter().GetResult()?.Where(x => x.QuestionID == qobj.Id).ToList();
+
+            }
+            catch (Exception ex)
+            {
+                this.HttpContext.Response.ContentType = "text/plain";
+                this.HttpContext.Response.StatusCode = (int)HttpStatusCode.InternalServerError;
+                await this.HttpContext.Response.WriteAsync("An error occurred while fetch questions GetQuestionsByTags API\n" + ex.Message);
+            }
+            return answers;
         }
 
     }
