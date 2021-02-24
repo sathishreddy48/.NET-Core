@@ -1,45 +1,64 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Net;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
-using WebApiTask.Models;
-using WebApiTask.Repository.IRepository;
-using WebApiTask.Utils;
+﻿// <copyright file="QuestionsController.cs" company="PlaceholderCompany">
+// Copyright (c) PlaceholderCompany. All rights reserved.
+// </copyright>
 
 namespace WebApiTask.Controllers
 {
+    using System;
+    using System.Collections.Generic;
+    using System.Linq;
+    using System.Net;
+    using System.Threading.Tasks;
+    using Microsoft.AspNetCore.Http;
+    using Microsoft.AspNetCore.Mvc;
+    using WebApiTask.Models;
+    using WebApiTask.Repository.IRepository;
+
+    /// <summary>
+    /// QuestionsController.
+    /// </summary>
     [Route("api/[controller]")]
     [ApiController]
     public class QuestionsController : ControllerBase
     {
-        private IUnitOfWork unitOfWork;
+        private readonly IUnitOfWork unitOfWork;
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="QuestionsController"/> class.
+        /// </summary>
+        /// <param name="unit">unit.</param>
         public QuestionsController(IUnitOfWork unit)
         {
-            unitOfWork = unit;
+            this.unitOfWork = unit;
         }
 
+        /// <summary>
+        /// GetAllAsync.
+        /// </summary>
+        /// <returns>A <see cref="Task{TResult}"/> representing the result of the asynchronous operation.</returns>
         [HttpGet]
         [Route("GetQuestions")]
         public async Task<IActionResult> GetAllAsync()
         {
             try
             {
-                var result = await unitOfWork.Questions.GetAllAsync();
-                return Ok(result);
+                var result = await this.unitOfWork.Questions.GetAllAsync();
+                return this.Ok(result);
             }
             catch (Exception ex)
             {
                 this.HttpContext.Response.ContentType = "text/plain";
                 this.HttpContext.Response.StatusCode = (int)HttpStatusCode.InternalServerError;
                 await this.HttpContext.Response.WriteAsync("An error occurred while fetching questions GetAllAsync API\n" + ex.Message);
-                return NoContent();
+                return this.NoContent();
             }
         }
 
+        /// <summary>
+        /// AddQuestionsAsync.
+        /// </summary>
+        /// <param name="question">question.</param>
+        /// <returns>A <see cref="Task"/> representing the result of the asynchronous operation.</returns>
         [HttpPost]
         [Route("AddQuestions")]
         public async Task AddQuestionsAsync([FromBody] Questions question)
@@ -50,18 +69,20 @@ namespace WebApiTask.Controllers
                 this.HttpContext.Response.StatusCode = (int)HttpStatusCode.BadRequest;
                 await this.HttpContext.Response.WriteAsync($"Parameter {nameof(question)} cannot be null or empty.");
             }
+
             try
             {
                 if (question.Id == Guid.Empty)
                 {
                     question.Id = Guid.NewGuid();
-                    await unitOfWork.Questions.AddAsync(question);
+                    await this.unitOfWork.Questions.AddAsync(question);
                 }
                 else
                 {
-                    await unitOfWork.Questions.UpdateQuestionsAsync(question);
+                    await this.unitOfWork.Questions.UpdateQuestionsAsync(question);
                 }
-                unitOfWork.Save();
+
+                this.unitOfWork.Save();
             }
             catch (Exception ex)
             {
@@ -71,7 +92,11 @@ namespace WebApiTask.Controllers
             }
         }
 
-
+        /// <summary>
+        /// GetQuestionsByTags 
+        /// </summary>
+        /// <param name="tags">tags.</param>
+        /// <returns>A <see cref="Task{TResult}"/> representing the result of the asynchronous operation.</returns>
         [HttpGet]
         [Route("GetQuestionsByTags/{tags}")]
         public async Task<IActionResult> GetQuestionsByTags(string tags)
@@ -82,12 +107,13 @@ namespace WebApiTask.Controllers
                 this.HttpContext.Response.StatusCode = (int)HttpStatusCode.BadRequest;
                 await this.HttpContext.Response.WriteAsync($"Parameter {nameof(tags)} cannot be null or empty.");
             }
+
             IEnumerable<Questions> questions = null;
             try
             {
-               var que = await unitOfWork.Questions.GetAllAsync();
-               questions =que.Where(x => x.Tags.Contains(tags)).ToList();
-                if (questions==null)
+               var que = await this.unitOfWork.Questions.GetAllAsync();
+               questions = que.Where(x => x.Tags.Contains(tags)).ToList();
+               if (questions == null)
                 {
                     this.HttpContext.Response.ContentType = "text/plain";
                     this.HttpContext.Response.StatusCode = (int)HttpStatusCode.NoContent;
@@ -100,7 +126,8 @@ namespace WebApiTask.Controllers
                 this.HttpContext.Response.StatusCode = (int)HttpStatusCode.InternalServerError;
                 await this.HttpContext.Response.WriteAsync("An error occurred while fetch questions GetQuestionsByTags API\n" + ex.Message);
             }
-            return Ok(questions);
+
+            return this.Ok(questions);
         }
     }
 }

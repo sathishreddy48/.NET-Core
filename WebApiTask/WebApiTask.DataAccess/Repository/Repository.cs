@@ -1,28 +1,41 @@
-﻿using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Linq.Expressions;
-using System.Threading;
-using System.Threading.Tasks;
-using WebApiTask.Repository.IRepository;
-using WebApiTask.Utils;
+﻿// <copyright file="Repository.cs" company="PlaceholderCompany">
+// Copyright (c) PlaceholderCompany. All rights reserved.
+// </copyright>
 
 namespace WebApiTask.Repository
 {
-    public class Repository<T> : IRepository<T> where T : class
-    {
+    using System;
+    using System.Collections.Generic;
+    using System.Linq;
+    using System.Linq.Expressions;
+    using System.Threading;
+    using System.Threading.Tasks;
+    using Microsoft.EntityFrameworkCore;
+    using WebApiTask.Repository.IRepository;
+    using WebApiTask.Utils;
 
+    /// <summary>
+    /// Repository.
+    /// </summary>
+    /// <typeparam name="T">T.</typeparam>
+    public class Repository<T> : IRepository<T>
+        where T : class
+    {
         private readonly ApplicationDbContext applicationDbContext;
 
         private readonly DbSet<T> dbSet;
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="Repository{T}"/> class.
+        /// </summary>
+        /// <param name="dbContext">dbContext.</param>
         public Repository(ApplicationDbContext dbContext)
         {
-            applicationDbContext = dbContext;
+            this.applicationDbContext = dbContext;
             this.dbSet = dbContext.Set<T>();
-            
         }
+
+
         public async Task AddAsync(T entity)
         {
              await dbSet.AddAsync(entity);
@@ -34,7 +47,7 @@ namespace WebApiTask.Repository
         }
 
         public async Task<IEnumerable<T>> GetAllAsync(PagingOptions pagingOptions,
-            CancellationToken ct,Expression<Func<T, bool>> filter = null, Func<IQueryable<T>, IOrderedQueryable<T>> orderBy = null, string includeProperties = null)
+            CancellationToken ct, Expression<Func<T, bool>> filter = null, Func<IQueryable<T>, IOrderedQueryable<T>> orderBy = null, string includeProperties = null)
         {
             throw new NotImplementedException();
         }
@@ -59,6 +72,7 @@ namespace WebApiTask.Repository
 
             return query.FirstOrDefault();
         }
+
         public async Task RemoveAsync(int id)
         {
             T entity = await dbSet.FindAsync(id);
@@ -77,7 +91,7 @@ namespace WebApiTask.Repository
 
         public async Task<IEnumerable<T>> GetAllAsync(Expression<Func<T, bool>> filter = null, Func<IQueryable<T>, IOrderedQueryable<T>> orderBy = null, string includeProperties = null)
         {
-            IQueryable<T> query = dbSet;
+            IQueryable<T> query = this.dbSet;
 
             if (filter != null)
             {

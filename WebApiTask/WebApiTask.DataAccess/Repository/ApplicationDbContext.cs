@@ -1,31 +1,38 @@
-﻿using Microsoft.EntityFrameworkCore;
-using WebApiTask.Models;
+﻿// <copyright file="ApplicationDbContext.cs" company="PlaceholderCompany">
+// Copyright (c) PlaceholderCompany. All rights reserved.
+// </copyright>
 
 namespace WebApiTask
 {
+    using Microsoft.EntityFrameworkCore;
+    using WebApiTask.Models;
+
+    /// <summary>
+    /// ApplicationDbContext.
+    /// </summary>
     public class ApplicationDbContext : DbContext
     {
         /// <summary>
-        /// initializes new context of the <see cref="ApplicationDbContext"/>
+        /// Initializes a new instance of the <see cref="ApplicationDbContext"/> class.
         /// </summary>
-        /// <param name="contextOptions"></param>
-        public ApplicationDbContext(DbContextOptions<ApplicationDbContext> contextOptions) : base(contextOptions)
+        /// <param name="contextOptions">contextOptions</param>
+        public ApplicationDbContext(DbContextOptions<ApplicationDbContext> contextOptions)
+            : base(contextOptions)
         {
-
         }
 
         /// <summary>
-        /// Get or sets tagsDBEntity
+        /// Gets or sets get or sets Tags.
         /// </summary>
         public DbSet<Tags> Tags { get; set; }
 
         /// <summary>
-        /// Get or Sets QuestionsDBEntity
+        /// Gets or sets get or Sets Questions.
         /// </summary>
         public DbSet<Questions> Questions { get; set; }
 
         /// <summary>
-        /// Get or Sets AnswersDBEntity
+        /// Gets or sets get or Sets Answers.
         /// </summary>
         public DbSet<Answers> Answers { get; set; }
     }
