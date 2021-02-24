@@ -23,10 +23,10 @@ namespace WebApiTask.Controllers
 
         [HttpGet]
         [Route("GetAnswers")]
-        public async Task<IEnumerable<Answers>> GetAllAsync()
+        public async Task<IActionResult> GetAllAsync()
         {
             var result = await unitOfWork.Answers.GetAllAsync();
-            return result;
+            return Ok(result);
         }
 
         [HttpPost]
@@ -35,7 +35,7 @@ namespace WebApiTask.Controllers
         {
             try
             {
-                if (answer.Id == null)
+                if (answer.Id == Guid.Empty)
                 {
                     answer.Id = Guid.NewGuid();
                     await unitOfWork.Answers.AddAsync(answer);
@@ -56,8 +56,8 @@ namespace WebApiTask.Controllers
         }
 
         [HttpGet]
-        [Route("GetAnswersByQuestion")]
-        public async Task<IEnumerable<Answers>> GetAnswersByquestionAsync([FromBody] string question)
+        [Route("GetAnswersByQuestion/{question}")]
+        public async Task<IActionResult> GetAnswersByquestionAsync(string question)
         {
             IEnumerable<Answers> answers = null;
             try
@@ -76,7 +76,7 @@ namespace WebApiTask.Controllers
                 this.HttpContext.Response.StatusCode = (int)HttpStatusCode.InternalServerError;
                 await this.HttpContext.Response.WriteAsync("An error occurred while fetch questions GetQuestionsByTags API\n" + ex.Message);
             }
-            return answers;
+            return Ok(answers);
         }
 
     }

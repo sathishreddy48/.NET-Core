@@ -36,7 +36,7 @@ namespace WebApiTask.Controllers
         {
             try
             {
-                if (tags.Id == null)
+                if (tags.Id == Guid.Empty)
                 {
                     tags.Id = Guid.NewGuid();
                     await unitOfWork.Tags.AddAsync(tags);
