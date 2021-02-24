@@ -35,8 +35,9 @@ namespace WebApiTask.Test
             var response = await client.GetAsync("https://localhost:44332/api/Questions/GetQuestionsByTags/c");
             Assert.Equal(HttpStatusCode.OK, response.StatusCode);
 
-            dynamic question = JObject.Parse(await response.Content.ReadAsStringAsync());
-           
+            dynamic collection = JObject.Parse(await response.Content.ReadAsStringAsync());
+            Assert.True(collection.value.Count > 0);
+
         }
     }
 }
