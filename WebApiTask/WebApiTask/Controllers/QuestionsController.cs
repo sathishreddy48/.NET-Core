@@ -45,7 +45,6 @@ namespace WebApiTask.Controllers
                 {
                     await unitOfWork.Questions.UpdateQuestionsAsync(question);
                 }
-
                 unitOfWork.Save();
             }
             catch (Exception ex)
