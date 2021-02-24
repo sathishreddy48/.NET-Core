@@ -12,6 +12,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\WebApiTask.Models\WebApiTask.Models.csproj" />
+    <ProjectReference Include="..\WebApiTask.Utils\WebApiTask.Utils.csproj" />
   </ItemGroup>
 
 </Project>
