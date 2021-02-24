@@ -38,19 +38,19 @@ namespace WebApiTask.Controllers
         /// <returns>A <see cref="Task{TResult}"/> representing the result of the asynchronous operation.</returns>
         [HttpGet]
         [Route("GetQuestions")]
-        public async Task<IActionResult> GetAllAsync()
+        public async Task<IEnumerable<Questions>> GetAllAsync()
         {
             try
             {
                 var result = await this.unitOfWork.Questions.GetAllAsync();
-                return this.Ok(result);
+                return result;
             }
             catch (Exception ex)
             {
                 this.HttpContext.Response.ContentType = "text/plain";
                 this.HttpContext.Response.StatusCode = (int)HttpStatusCode.InternalServerError;
                 await this.HttpContext.Response.WriteAsync("An error occurred while fetching questions GetAllAsync API\n" + ex.Message);
-                return this.NoContent();
+                return null;
             }
         }
 
@@ -61,13 +61,14 @@ namespace WebApiTask.Controllers
         /// <returns>A <see cref="Task"/> representing the result of the asynchronous operation.</returns>
         [HttpPost]
         [Route("AddQuestions")]
-        public async Task AddQuestionsAsync([FromBody] Questions question)
+        public async Task<IActionResult> AddQuestionsAsync([FromBody] Questions question)
         {
             if (question == null)
             {
                 this.HttpContext.Response.ContentType = "text/plain";
                 this.HttpContext.Response.StatusCode = (int)HttpStatusCode.BadRequest;
                 await this.HttpContext.Response.WriteAsync($"Parameter {nameof(question)} cannot be null or empty.");
+                return this.NotFound();
             }
 
             try
@@ -83,12 +84,14 @@ namespace WebApiTask.Controllers
                 }
 
                 this.unitOfWork.Save();
+                return this.Ok("Success");
             }
             catch (Exception ex)
             {
                 this.HttpContext.Response.ContentType = "text/plain";
                 this.HttpContext.Response.StatusCode = (int)HttpStatusCode.InternalServerError;
                 await this.HttpContext.Response.WriteAsync("An error occurred while creating questions AddQuestionsAsync API\n" + ex.Message);
+                return this.NotFound("failed");
             }
         }
 
@@ -99,7 +102,7 @@ namespace WebApiTask.Controllers
         /// <returns>A <see cref="Task{TResult}"/> representing the result of the asynchronous operation.</returns>
         [HttpGet]
         [Route("GetQuestionsByTags/{tags}")]
-        public async Task<IActionResult> GetQuestionsByTags(string tags)
+        public async Task<IEnumerable<Questions>> GetQuestionsByTags(string tags)
         {
             if (string.IsNullOrEmpty(tags))
             {
@@ -127,7 +130,7 @@ namespace WebApiTask.Controllers
                 await this.HttpContext.Response.WriteAsync("An error occurred while fetch questions GetQuestionsByTags API\n" + ex.Message);
             }
 
-            return this.Ok(questions);
+            return questions;
         }
     }
 }

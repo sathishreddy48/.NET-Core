@@ -91,7 +91,7 @@ namespace WebApiTask.Controllers
         /// <returns>A <see cref="Task{TResult}"/> representing the result of the asynchronous operation.</returns>
         [HttpGet]
         [Route("GetAnswersByQuestion/{question}")]
-        public async Task<IActionResult> GetAnswersByquestionAsync(string question)
+        public async Task<IEnumerable<Answers>> GetAnswersByquestionAsync(string question)
         {
             IEnumerable<Answers> answers = null;
             if (string.IsNullOrEmpty(question))
@@ -121,7 +121,7 @@ namespace WebApiTask.Controllers
                 await this.HttpContext.Response.WriteAsync("An error occurred while fetch questions GetQuestionsByTags API\n" + ex.Message);
             }
 
-            return this.Ok(answers);
+            return answers;
         }
     }
 }
