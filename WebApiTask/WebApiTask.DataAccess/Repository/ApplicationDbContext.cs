@@ -1,9 +1,9 @@
-﻿namespace WebApiTask
+﻿using Microsoft.EntityFrameworkCore;
+using WebApiTask.Models;
+
+namespace WebApiTask
 {
-    using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
-    using Microsoft.EntityFrameworkCore;
-    using WebApiTask.Models;
-    public class ApplicationDbContext : IdentityDbContext
+    public class ApplicationDbContext : DbContext
     {
         /// <summary>
         /// initializes new context of the <see cref="ApplicationDbContext"/>

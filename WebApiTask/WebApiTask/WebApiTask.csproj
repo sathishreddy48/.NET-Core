@@ -20,7 +20,9 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Repository\Services\" />
+    <ProjectReference Include="..\WebApiTask.DataAccess\WebApiTask.DataAccess.csproj" />
+    <ProjectReference Include="..\WebApiTask.Models\WebApiTask.Models.csproj" />
+    <ProjectReference Include="..\WebApiTask.Utils\WebApiTask.Utils.csproj" />
   </ItemGroup>
 
 
