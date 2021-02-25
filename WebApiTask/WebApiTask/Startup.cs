@@ -8,6 +8,8 @@ namespace WebApiTask
     using System.Collections.Generic;
     using System.Linq;
     using System.Threading.Tasks;
+    using Microsoft.AspNet.OData.Builder;
+    using Microsoft.AspNet.OData.Extensions;
     using Microsoft.AspNetCore.Builder;
     using Microsoft.AspNetCore.Hosting;
     using Microsoft.AspNetCore.HttpsPolicy;
@@ -17,6 +19,7 @@ namespace WebApiTask
     using Microsoft.Extensions.DependencyInjection;
     using Microsoft.Extensions.Hosting;
     using Microsoft.Extensions.Logging;
+    using Microsoft.OData.Edm;
     using WebApiTask.Repository;
     using WebApiTask.Repository.IRepository;
 
@@ -43,15 +46,32 @@ namespace WebApiTask
             services.AddDbContext<ApplicationDbContext>(options => options.UseSqlServer(connection));
             services.AddScoped<IUnitOfWork, UnitOfWork>();
             services.AddControllers();
+
+            // register Odata services
+            // services.AddOData();
+            // services.AddMvc(options => options.EnableEndpointRouting = false);
+
+            // Register the Swagger generator, defining 1 or more Swagger documents
+            services.AddSwaggerGen();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
+            // Enable middleware to serve generated Swagger as a JSON endpoint.
+            app.UseSwagger();
+
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
             }
+
+            // Enable middleware to serve swagger-ui (HTML, JS, CSS, etc.),
+            // specifying the Swagger JSON endpoint.
+            app.UseSwaggerUI(c =>
+            {
+                c.SwaggerEndpoint("/swagger/v1/swagger.json", "WebApiTask");
+            });
 
             app.UseHttpsRedirection();
 
@@ -59,10 +79,25 @@ namespace WebApiTask
 
             app.UseAuthorization();
 
+            //app.UseMvc(routeBuilder =>
+            //  {
+            //      routeBuilder.Select().Filter();
+            //      routeBuilder.MapODataServiceRoute("odata", "odata", this.GetEdmModel());
+            //  });
+
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllers();
             });
+        }
+
+        // For ODATA model
+        IEdmModel GetEdmModel()
+        {
+            var odataBuilder = new ODataConventionModelBuilder();
+            odataBuilder.EntitySet<Models.Questions>("Questions");
+
+            return odataBuilder.GetEdmModel();
         }
     }
 }

@@ -14,7 +14,7 @@ namespace WebApiTask.Repository
     {
         private readonly ApplicationDbContext applicationDbContext;
 
-        public IStoredProcedure StoredProcedure  { get; private set; }
+        public IStoredProcedure StoredProcedure { get; private set; }
 
         public ITags Tags { get; private set; }
 

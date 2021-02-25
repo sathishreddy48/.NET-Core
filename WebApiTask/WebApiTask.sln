@@ -11,7 +11,12 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WebApiTask.Models", "WebApi
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WebApiTask.Utils", "WebApiTask.Utils\WebApiTask.Utils.csproj", "{16E08C52-BDB3-44E8-8099-22F2787836EA}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebApiTask.Test", "WebApiTask.Test\WebApiTask.Test.csproj", "{8F42F51D-A719-49E2-87FC-899DC963755A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WebApiTask.Test", "WebApiTask.Test\WebApiTask.Test.csproj", "{8F42F51D-A719-49E2-87FC-899DC963755A}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Notes", "Notes", "{2AEAFEC5-65DF-481A-A6BD-A24DC1C2563D}"
+	ProjectSection(SolutionItems) = preProject
+		Notes.txt = Notes.txt
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

@@ -1,0 +1,22 @@
+-->web api 
+--> repository pattern
+--> Unit of work 
+--> Dependency injection 
+--> Uit test cases x- Unit 
+--> swagger
+  link to follow : https://docs.microsoft.com/en-us/aspnet/core/tutorials/getting-started-with-swashbuckle?view=aspnetcore-5.0&tabs=visual-studio
+     1. installed Install-Package Swashbuckle.AspNetCore -Version 5.6.3
+     2. added in configuration Services 
+         // Register the Swagger generator, defining 1 or more Swagger documents
+            services.AddSwaggerGen();
+Odata
+ https://devblogs.microsoft.com/odata/supercharging-asp-net-core-api-with-odata/
+ https://github.com/OData/WebApi/issues/1748
+
+
+ for async example 
+ https://docs.microsoft.com/en-us/dotnet/csharp/programming-guide/concepts/async/
+
+
+
+      
