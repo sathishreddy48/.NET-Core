@@ -1,18 +1,25 @@
-﻿using Microsoft.Extensions.Configuration;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using WebApiTask.Repository.IRepository;
+﻿// <copyright file="UnitOfWork.cs" company="PlaceholderCompany">
+// Copyright (c) PlaceholderCompany. All rights reserved.
+// </copyright>
 
 namespace WebApiTask.Repository
 {
+    using Microsoft.Extensions.Configuration;
+    using WebApiTask.Repository.IRepository;
+
+    /// <summary>
+    /// UnitOfWork.
+    /// </summary>
     public class UnitOfWork : IUnitOfWork
     {
         private readonly ApplicationDbContext applicationDbContext;
+
         public IStoredProcedure StoredProcedure  { get; private set; }
+
         public ITags Tags { get; private set; }
+
         public IQuestions Questions { get; private set; }
+
         public IAnswers Answers { get; private set; }
 
         public UnitOfWork(ApplicationDbContext dbContext , IConfiguration configuration)
@@ -26,7 +33,7 @@ namespace WebApiTask.Repository
 
         public void Dispose()
         {
-            applicationDbContext.Dispose();
+            this.applicationDbContext.Dispose();
         }
 
         public void Save()

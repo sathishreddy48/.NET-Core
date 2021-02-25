@@ -7,6 +7,7 @@ namespace WebApiTask.Test
     using System;
     using System.Collections.Generic;
     using System.Text;
+    using System.Web.Http.Results;
     using WebApiTask.Controllers;
 
     /// <summary>
@@ -60,6 +61,8 @@ namespace WebApiTask.Test
 
             var service = new QuestionsController(unity);
             var result = (IList<Models.Questions>)await service.GetQuestionsByTags("c#");
+
+            // var contentResult = result as OkNegotiatedContentResult<IEnumerable<Models.Questions>>;
             Xunit.Assert.NotNull(result);
             Xunit.Assert.Equal("question1", result[0].Question);
         }

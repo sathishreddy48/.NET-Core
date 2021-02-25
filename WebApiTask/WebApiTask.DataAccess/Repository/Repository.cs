@@ -35,7 +35,6 @@ namespace WebApiTask.Repository
             this.dbSet = dbContext.Set<T>();
         }
 
-
         public async Task AddAsync(T entity)
         {
              await dbSet.AddAsync(entity);
@@ -110,6 +109,7 @@ namespace WebApiTask.Repository
             {
                 return orderBy(query).ToList();
             }
+
             return query.ToList();
         }
     }
